@@ -93,9 +93,13 @@ class DjangoProject(object):
 
         self._path = path
         self._settings = settings
+        self._mod_settings = mod_settings
         self._manage = manage
 
         os.chdir(orig_cwd)
+
+    def get_settings_module(self):
+        return self._mod_settings
 
     def get_settings_filename(self):
         return self._settings

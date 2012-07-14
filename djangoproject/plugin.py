@@ -337,7 +337,7 @@ class Plugin(GObject.Object, Gedit.WindowActivatable):
         selector = AppSelector()
         selector.show_all()
         try:
-            selector.load_from_settings(self._project.get_settings_filename())
+            selector.load_from_settings(self._project.get_settings_module())
         except Exception as e:
             self.error_dialog("Error getting app list: %s" % str(e))
         box = dialog.get_content_area()
