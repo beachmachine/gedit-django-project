@@ -66,7 +66,6 @@ class DjangoProject(object):
         orig_cwd = os.getcwd()
         os.chdir(path)
         sys.path.append(path)
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
         # Load the manage module, so the DJANGO_SETTINGS_MODULE environment
         # variable gets set. Loading may fail, but setting DJANGO_SETTINGS_MODULE
@@ -81,6 +80,10 @@ class DjangoProject(object):
             sys.argv = orig_sys_argv
         except:
             raise IOError("Django manage module could not get loaded")
+
+        # set DJANGO_SETTINGS_MODULE environment variable to 'settings' if it
+        # was not already set by the user or manage.py.
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
         # Now we try to load the settings module and get the file path.
         try:
